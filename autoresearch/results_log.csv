@@ -1,1 +1,2 @@
 iteration,adapter_repo,lora_r,learning_rate,max_steps,format_accuracy,answer_accuracy,combined_accuracy,eval_samples,notes,timestamp
+1,akshatamadavi/llama-3.2-3b-xlam-lora,16,0.0002,500,1.0,1.0,1.0,200,"baseline — lora_r=16, lr=2e-4, 500 steps",2026-05-09T22:43:42.132969

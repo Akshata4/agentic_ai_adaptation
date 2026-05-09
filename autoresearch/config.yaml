@@ -1,42 +1,31 @@
-# ─── Model ────────────────────────────────────────────────────────────────────
-base_model: "meta-llama/Llama-3.2-3B-Instruct"
-adapter_repo: "akshatamadavi/llama-3.2-3b-xlam-lora"   # ← fill in before first run
-
-# ─── LoRA ─────────────────────────────────────────────────────────────────────
-lora_r: 16
+base_model: meta-llama/Llama-3.2-3B-Instruct
+adapter_repo: akshatamadavi/llama-3.2-3b-xlam-lora
+lora_r: 8
 lora_alpha: 32
 lora_dropout: 0.05
 lora_target_modules:
-  - q_proj
-  - v_proj
-  - k_proj
-  - o_proj
-  - gate_proj
-  - up_proj
-  - down_proj
-
-# ─── Training ─────────────────────────────────────────────────────────────────
+- q_proj
+- v_proj
+- k_proj
+- o_proj
+- gate_proj
+- up_proj
+- down_proj
 max_seq_length: 2048
 per_device_train_batch_size: 4
 gradient_accumulation_steps: 4
 num_train_epochs: 1
-learning_rate: 2.0e-4
+learning_rate: 0.0002
 warmup_ratio: 0.03
-lr_scheduler_type: "cosine"
-max_steps: 500          # controls wall-clock time on Colab; increase for better quality
+lr_scheduler_type: cosine
+max_steps: 500
 seed: 42
-
-# ─── Dataset ──────────────────────────────────────────────────────────────────
-dataset_name: "Salesforce/xlam-function-calling-60k"
-train_split_ratio: 0.9   # 90% train / 10% eval
-max_train_samples: 5000  # cap to keep Colab run under ~30 min on A100
-
-# ─── Evaluation ───────────────────────────────────────────────────────────────
+dataset_name: Salesforce/xlam-function-calling-60k
+train_split_ratio: 0.9
+max_train_samples: 5000
 eval_samples: 200
-tool_format_weight: 0.5   # weight for JSON format correctness
-answer_accuracy_weight: 0.5  # weight for correct tool name match
-
-# ─── Autoresearch bookkeeping ──────────────────────────────────────────────────
-iteration: 1
-best_combined_accuracy: 0.0
-notes: "baseline — lora_r=16, lr=2e-4, 500 steps"
+tool_format_weight: 0.5
+answer_accuracy_weight: 0.5
+iteration: 2
+best_combined_accuracy: 1.0
+notes: smaller lora_r=8
