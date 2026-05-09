@@ -216,3 +216,20 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# uv
+.venv/
+# uv.lock is intentionally committed for reproducibility — remove this line to ignore it
+
+# Model weights & HuggingFace cache
+lora_model/
+outputs/
+*.bin
+*.safetensors
+*.pt
+*.pth
+.cache/
+huggingface/
+
+# Colab artifacts
+agentic_ai_adaptation/   # cloned inside Colab, not needed here

@@ -1,0 +1,13 @@
+# Install order matters for unsloth on Colab
+# Run: pip install -r requirements.txt
+# Or paste the cell from finetune.ipynb directly
+
+unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git
+trl>=0.8.6
+peft>=0.10.0
+accelerate>=0.28.0
+bitsandbytes>=0.43.0
+transformers>=4.40.0
+datasets>=2.18.0
+huggingface_hub>=0.22.0
+pyyaml>=6.0
