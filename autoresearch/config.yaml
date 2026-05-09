@@ -1,6 +1,6 @@
 # ─── Model ────────────────────────────────────────────────────────────────────
 base_model: "meta-llama/Llama-3.2-3B-Instruct"
-adapter_repo: "YOUR_HF_USERNAME/llama-3.2-3b-xlam-lora"   # ← fill in before first run
+adapter_repo: "akshatamadavi/llama-3.2-3b-xlam-lora"   # ← fill in before first run
 
 # ─── LoRA ─────────────────────────────────────────────────────────────────────
 lora_r: 16
