@@ -28,13 +28,12 @@ AGENT_DIR = Path(__file__).parent.parent / "agent"
 # Ordered search space: each dict is one iteration's hyperparams to try.
 # The loop cycles through these, picking the next untried config.
 SEARCH_SPACE = [
-    {"lora_r": 16, "learning_rate": 2.0e-4, "max_steps": 500,  "notes": "baseline"},
-    {"lora_r": 8,  "learning_rate": 2.0e-4, "max_steps": 500,  "notes": "smaller lora_r=8"},
-    {"lora_r": 32, "learning_rate": 1.0e-4, "max_steps": 500,  "notes": "larger lora_r=32, lower lr"},
-    {"lora_r": 16, "learning_rate": 4.0e-4, "max_steps": 500,  "notes": "higher lr=4e-4"},
-    {"lora_r": 16, "learning_rate": 2.0e-4, "max_steps": 1000, "notes": "2x steps"},
-    {"lora_r": 16, "learning_rate": 2.0e-4, "max_steps": 500,
-     "lora_target_modules": ["q_proj", "v_proj"], "notes": "minimal target modules"},
+    {"lora_r": 16, "learning_rate": 2.0e-4, "max_steps": 500,  "max_train_samples": 5000,  "notes": "baseline"},
+    {"lora_r": 16, "learning_rate": 2.0e-4, "max_steps": 500,  "max_train_samples": 10000, "notes": "2x training data"},
+    {"lora_r": 16, "learning_rate": 2.0e-4, "max_steps": 1000, "max_train_samples": 5000,  "notes": "2x steps"},
+    {"lora_r": 16, "learning_rate": 1.0e-4, "max_steps": 1000, "max_train_samples": 5000,  "notes": "lower lr + 2x steps"},
+    {"lora_r": 16, "learning_rate": 2.0e-4, "max_steps": 1000, "max_train_samples": 10000, "notes": "2x data + 2x steps"},
+    {"lora_r": 32, "learning_rate": 1.0e-4, "max_steps": 1000, "max_train_samples": 10000, "notes": "lora_r=32 + 2x data + 2x steps"},
 ]
 
 
