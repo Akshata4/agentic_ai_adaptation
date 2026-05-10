@@ -50,7 +50,7 @@ Log accuracy (metric)                Execute tools, check answers
 | Training hardware | Google Colab Pro A100 |
 | Inference (local) | HuggingFace `transformers` + `peft` |
 | Tools | Wikipedia API, Calculator |
-| Metrics | Format accuracy + Answer accuracy |
+| Metrics | Format accuracy + Tool-name accuracy + Argument accuracy (weighted combined) |
 | Autoresearch | Inspired by [karpathy/autoresearch](https://github.com/karpathy/autoresearch) |
 
 ---
@@ -146,20 +146,41 @@ python results/generate_chart.py
 
 ## Hyperparameter Search Space
 
-| Iter | lora_r | lr | max_steps | Notes |
-|------|--------|----|-----------|-------|
-| 1 | 16 | 2e-4 | 500 | baseline |
-| 2 | 8 | 2e-4 | 500 | smaller adapter |
-| 3 | 32 | 1e-4 | 500 | larger adapter, lower lr |
-| 4 | 16 | 4e-4 | 500 | higher learning rate |
-| 5 | 16 | 2e-4 | 1000 | 2× training steps |
-| 6 | 16 | 2e-4 | 500 | minimal target modules |
+| Iter | lora_r | lr | max_steps | train_samples | Notes |
+|------|--------|----|-----------|---------------|-------|
+| 1 | 16 | 2e-4 | 500 | 5000 | baseline |
+| 2 | 16 | 2e-4 | 500 | 10000 | 2× training data |
+| 3 | 16 | 2e-4 | 1000 | 5000 | 2× steps |
+| 4 | 16 | 1e-4 | 1000 | 5000 | lower lr + 2× steps |
+| 5 | 16 | 2e-4 | 1000 | 10000 | 2× data + 2× steps |
+| 6 | 32 | 1e-4 | 1000 | 10000 | lora_r=32 + 2× data + 2× steps |
 
 ---
 
 ## Results
 
-See [results/iteration_table.md](results/iteration_table.md) and [results/accuracy_chart.png](results/accuracy_chart.png) — populated after running the loop.
+10 iterations completed. Best combined accuracy: **97.20%** (iteration 3).
+
+| Iter | lora_r | lr | max_steps | Format | Tool Name | Arguments | Combined | Notes |
+|------|--------|----|-----------|--------|-----------|-----------|----------|-------|
+| 1 | 16 | 2e-4 | 500 | 100.00% | 100.00% | — | 100.00% | baseline (pre-args metric) |
+| 2 | 8 | 2e-4 | 500 | 100.00% | 100.00% | — | 100.00% | smaller lora_r=8 (pre-args metric) |
+| 3 | 16 | 2e-4 | 500 | 100.00% | 100.00% | 91.50% | **97.20%** | ← best |
+| 4 | 16 | 4e-4 | 500 | 99.50% | 99.50% | 90.00% | 96.37% | higher lr=4e-4 |
+| 5 | 16 | 2e-4 | 500 | 100.00% | 100.00% | 90.50% | 96.87% | baseline |
+| 6 | 16 | 2e-4 | 500 | 99.50% | 99.00% | 88.50% | 95.71% | minimal target modules |
+| 7 | 16 | 2e-4 | 500 | 100.00% | 100.00% | 91.00% | 97.03% | baseline |
+| 8 | 16 | 2e-4 | 500 | 100.00% | 100.00% | 91.00% | 97.03% | 2× training data |
+| 9 | 16 | 2e-4 | 1000 | 100.00% | 100.00% | 90.00% | 96.70% | 2× steps |
+| 10 | 16 | 1e-4 | 1000 | 100.00% | 100.00% | 90.50% | 96.87% | lower lr + 2× steps |
+
+**Key findings:**
+- Format and tool-name accuracy saturate near 100% across all configs — the model learns the output schema reliably
+- Argument accuracy (91.50% best) is the bottleneck — exact value matching is harder than structure
+- Higher learning rate (iter 4) and minimal LoRA target modules (iter 6) both hurt argument accuracy
+- More training data and longer training did not improve beyond the baseline
+
+See [results/iteration_table.md](results/iteration_table.md) and [results/accuracy_chart.png](results/accuracy_chart.png).
 
 ---
 
