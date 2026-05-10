@@ -5,3 +5,4 @@ iteration,adapter_repo,lora_r,learning_rate,max_steps,format_accuracy,toolname_a
 4,akshatamadavi/llama-3.2-3b-xlam-lora,16,0.0004,500,0.995,0.995,0.9,0.9637,200,higher lr=4e-4,2026-05-10T00:08:46.242707
 5,akshatamadavi/llama-3.2-3b-xlam-lora,16,0.0002,500,1.0,1.0,0.905,0.9687,200,baseline,2026-05-10T00:37:17.027095
 6,akshatamadavi/llama-3.2-3b-xlam-lora,16,0.0002,500,0.995,0.99,0.885,0.9571,200,minimal target modules,2026-05-10T01:02:17.872027
+7,akshatamadavi/llama-3.2-3b-xlam-lora,16,0.0002,500,1.0,1.0,0.91,0.9703,200,baseline,2026-05-10T01:30:47.348282
