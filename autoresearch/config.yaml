@@ -18,15 +18,15 @@ num_train_epochs: 1
 learning_rate: 0.0002
 warmup_ratio: 0.03
 lr_scheduler_type: cosine
-max_steps: 500
+max_steps: 1000
 seed: 42
 dataset_name: Salesforce/xlam-function-calling-60k
 train_split_ratio: 0.9
-max_train_samples: 10000
+max_train_samples: 5000
 eval_samples: 200
 tool_format_weight: 0.34
 answer_accuracy_weight: 0.33
 argument_accuracy_weight: 0.33
-iteration: 8
+iteration: 9
 best_combined_accuracy: 0.972
-notes: 2x training data
+notes: 2x steps
