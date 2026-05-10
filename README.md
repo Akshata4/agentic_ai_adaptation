@@ -6,6 +6,17 @@
 
 ---
 
+## Deliverables
+
+| Deliverable | Link |
+|-------------|------|
+| Medium article | [Teaching an LLM to Use Tools](https://medium.com/@akshatamadavi/teaching-an-llm-to-use-tools-fine-tuning-llama-3-2-with-a-karpathy-style-autoresearch-loop-7ccb25c43579) |
+| Slide deck (Slideshare) | see `video_link.txt` |
+| Video walkthrough (YouTube) | see `video_link.txt` |
+| HuggingFace adapter | `adapter_repo` in `config.yaml` |
+
+---
+
 ## What This Project Reproduces
 
 This project implements the **A1 paradigm** from the survey — *supervised fine-tuning of an LLM agent* to perform structured tool calling — and wraps it in a **Karpathy-style autoresearch loop** that iterates over hyperparameters and keeps only improvements.
@@ -182,16 +193,6 @@ python results/generate_chart.py
 
 See [results/iteration_table.md](results/iteration_table.md) and [results/accuracy_chart.png](results/accuracy_chart.png).
 
----
-
-## Deliverables
-
-| Deliverable | Link |
-|-------------|------|
-| Medium article | see `medium_link.txt` |
-| Slide deck (Slideshare) | see `video_link.txt` |
-| Video walkthrough (YouTube) | see `video_link.txt` |
-| HuggingFace adapter | `adapter_repo` in `config.yaml` |
 
 ---
 
