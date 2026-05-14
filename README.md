@@ -12,7 +12,7 @@
 |-------------|------|
 | Medium article | [Teaching an LLM to Use Tools](https://medium.com/@akshatamadavi/teaching-an-llm-to-use-tools-fine-tuning-llama-3-2-with-a-karpathy-style-autoresearch-loop-7ccb25c43579) |
 | Slide deck (Slideshare) | [Slides](https://github.com/Akshata4/agentic_ai_adaptation/blob/main/Automated_LLM_Tool_SFT.pdf) |
-| Video walkthrough (YouTube) | see `video_link.txt` |
+| Video walkthrough (YouTube) | https://www.youtube.com/watch?v=d77__gzxjt0 |
 | HuggingFace adapter | `adapter_repo` in `config.yaml` |
 
 ---
